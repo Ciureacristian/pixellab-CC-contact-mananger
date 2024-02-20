@@ -5,7 +5,7 @@ const baseUrl = import.meta.env.VITE_SERVER_URI;
 
 function App() {
   const [name, setName] = useState('');
-  const [ setMessage] = useState('');
+  const [ message, setMessage] = useState('');
 
   useEffect(() => {
     axios
@@ -24,7 +24,10 @@ function App() {
       });
   }, []);
 
- 
+  if (message.trim().length > 0) {
+    return <div>{message}</div>;
+  }
+
 
   return (
     <h1 className="text-3xl font-bold underline">
