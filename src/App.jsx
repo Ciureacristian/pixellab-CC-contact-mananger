@@ -1,15 +1,20 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-const baseUrl = import.meta.env.VITE_SERVER_URI;
+import { client } from './api/test';
+import { Button } from './components/ui/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { Footer } from './components/Footer';
 
 function App() {
   const [name, setName] = useState('');
-  const [ message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
+  const state = useSelector(({ counter }) => {
+    return counter;
+  });
 
   useEffect(() => {
-    axios
-      .get(`${baseUrl}/profile`)
+    client
+      .get('/profile')
       .then((response) => {
         const { data } = response;
 
@@ -28,10 +33,48 @@ function App() {
     return <div>{message}</div>;
   }
 
-
   return (
     <h1 className="text-3xl font-bold underline">
       {name.trim().length <= 0 ? '...loading' : name}
+
+      <Button>aici se proiecteaza children elements</Button>
+
+      <div className="mt-14">
+        <button
+          onClick={() => {
+            dispatch({
+              type: 'decrement',
+            });
+          }}
+        >
+          -
+        </button>
+
+        <span className="mx-8">{state}</span>
+
+        <button
+          onClick={() => {
+            dispatch({
+              type: 'increment',
+            });
+          }}
+        >
+          +
+        </button>
+      </div>
+
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'add',
+            payload: 42,
+          });
+        }}
+      >
+        Add 42
+      </button>
+
+      <Footer value={state}></Footer>
     </h1>
   );
 }
