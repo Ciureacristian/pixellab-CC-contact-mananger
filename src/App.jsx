@@ -1,19 +1,22 @@
-import {RouterReact, createrBrowserRouter} from "react-router-dom"
-import { Home } from "./pages";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Contacts, Home } from './pagess';
 
 function App() {
-  const router = createrBrowserRouter([
+  const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home></Home>
-    }
-  ])
+      element: <Home></Home>,
+    },
+    {
+      path: '/contacts',
+      element: <Contacts></Contacts>,
+    },
+  ]);
 
-  return <RouterReact router={router}></RouterReact>
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
-
 
 // const [name, setName] = useState('');
 //   const [message, setMessage] = useState('');
