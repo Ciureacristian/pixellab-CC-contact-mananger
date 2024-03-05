@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../ui';
-import { GoogleLogin, Greeting } from '../../auth';
+import { GoogleLogin, Greeting } from './../../auth';
 import { unsetUser } from '../../../stores/actions/auth';
 import { Link } from 'react-router-dom';
 
@@ -15,8 +15,8 @@ export const HeaderSecondary = () => {
       <div className="container mx-auto px-4 min-h-10 flex items-center justify-between">
         {authenticated ? (
           <>
-            <Link title="Add Contact" to={'/contacts/new'}>
-              <Button title="Add Contact" skin="success">
+            <Link title="Add Contact" to="/contacts/new">
+              <Button element="span" skin="success">
                 Add Contact
               </Button>
             </Link>
@@ -38,8 +38,6 @@ export const HeaderSecondary = () => {
         ) : (
           <GoogleLogin></GoogleLogin>
         )}
-
-        {}
       </div>
     </section>
   );
