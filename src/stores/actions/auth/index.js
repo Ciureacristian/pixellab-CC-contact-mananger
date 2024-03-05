@@ -7,6 +7,12 @@ export const setUser = (user) => {
   };
 };
 
+export const unsetUser = () => {
+  return {
+    type: 'auth/unsetUser',
+  };
+};
+
 // GET -> users/idasdads
 export const readUser = (userId) => {
   return async () => {
